@@ -1,0 +1,96 @@
+.about {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto 40px;
+    width: 80%;
+
+    &__title {
+        background-color: $light-grey;
+        padding: 20px;
+        text-align: center;
+    }
+
+    &__h1 {
+        color: $dark-grey;
+        font-size: 22px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 5px;
+    }
+
+    .breadcrumb {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        &__link {
+            color: $dark-grey;
+            font-size: 12px;
+            text-decoration: none;
+
+            &:hover {
+                color: $purple;
+                text-decoration: underline;
+            }
+        }
+
+        &__img {
+            margin: 8px;
+            width: 11px;
+        }
+    }
+
+    &__img {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    &__intro {
+        @include for-phone-only{
+            width: 100%;
+            text-align: justify;
+        }
+        color: $dark-grey;
+        font-size: 16px;
+        font-weight: 100;
+        margin: 30px auto;
+        text-align: center;
+        width: 70%;
+    }
+
+    &__split {
+        @include for-phone-only{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        } 
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__img-description {
+        width: $img-width;
+    }
+
+    &__txt {
+        @include for-phone-only{
+            width: 100%;
+            text-align: justify;
+        }
+        width:calc(100% - #{$img-width});
+    }
+
+    &__p {
+        @include for-phone-only{
+            padding: 10px 0;
+        }
+        color: $dark-grey;
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+}

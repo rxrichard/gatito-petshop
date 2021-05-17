@@ -1,0 +1,271 @@
+/// Estas variaveis se referem as cores principais do nosso blog
+$purple: #A050BE;
+$light-grey: #eaeaeb;
+$dark-grey: #464646;
+$yellow: #FABE50;
+$img-width: 45%;
+
+%no-decoration {
+    text-decoration: none;
+}
+
+%u-decoration {
+    text-decoration: underline;
+}
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin flx($property, $jty-cnt) {
+    display: flex;
+    #{$property}: $jty-cnt;
+}
+
+@mixin for-phone-only {
+    @media (max-width: 767.98px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-only {
+    @media (min-width: 768px) and (max-width: 1199.98px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-only {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@function calculateRem($size) {
+    @return $size / 16px * 1rem;
+}
+
+@mixin fontSize($size) {
+    font-size: calculateRem($size);
+}
+
+@import 'header', 'footer', 'about', 'article', 'collection', 'contact';
+
+$directions:top,
+bottom,
+left,
+right;
+$layout-margin-size: 10px;
+
+@each $direction in $directions {
+    %no-margin-#{$direction} {
+        margin-#{$direction}: 0;
+    }
+
+    %default-margin-#{$direction} {
+        margin-#{$direction}: $layout-margin-size;
+    }
+
+    %double-margin-#{$direction} {
+        margin-#{$direction}: $layout-margin-size * 2;
+    }
+
+    %half-margin-#{$direction} {
+        margin-#{$direction}: $layout-margin-size / 2;
+    }
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+
+    &__content {
+        @include for-phone-only {
+            width: 100%;
+        }
+
+        padding: 40px 8px;
+        width: 70%;
+    }
+
+    &__post {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 800px;
+        text-align: center;
+    }
+
+    &__title {
+        @include fontSize(22px);
+        color: $dark-grey;
+        letter-spacing: 1.5;
+        text-decoration: none;
+
+        &:hover {
+            color: $purple;
+        }
+    }
+
+    &__subtitle {
+        @extend %default-margin-top,
+        %double-margin-bottom;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__date {
+        @extend %no-margin-top,
+        %default-margin-left,
+        %default-margin-right,
+        %no-margin-bottom;
+        font-size: 12px;
+        font-style: italic;
+    }
+
+    &__tag {
+        font-size: 14px;
+        padding: 5px 7px;
+        color: $purple;
+        border: 1px solid $purple;
+        @extend %no-margin-top,
+        %no-margin-bottom,
+        %default-margin-left,
+        %default-margin-right;
+    }
+
+    &__details {
+        border: 1px solid $light-grey;
+    }
+
+    &__img {
+        width: 100%;
+    }
+
+    &__description {
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 650px;
+        padding: 40px 0 25px;
+    }
+
+    &__btn {
+        background-color: $yellow;
+        color: $purple;
+        font-size: 16px;
+        letter-spacing: 1.5;
+        padding: 10px 20px;
+        text-decoration: none;
+        transition: .3s;
+
+        &:hover {
+            background-color: $purple;
+            color: $yellow;
+        }
+    }
+
+    &__info {
+        align-items: center;
+        border-top: 1px solid $light-grey;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    &__author {
+        border-right: 1px solid $light-grey;
+        width: 50%;
+    }
+
+    &__p {
+        color: $dark-grey;
+        font-size: 14px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    &__comments {
+        width: 50%;
+    }
+
+    &__a {
+        color: $dark-grey;
+        font-size: 14px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        text-decoration: none;
+
+        &:hover {
+            color: $purple;
+        }
+    }
+
+    &__sidebar {
+        padding: 40px 10px;
+        width: 25%;
+        
+        @include for-phone-only{
+            width: 100%;
+            padding: 0 10px;
+        }
+    }
+
+    .sidebar {
+        &__top {
+            border: 1px solid $light-grey;
+            padding: 15px 20px;
+        }
+
+        &__title {
+            background-color: $yellow;
+            letter-spacing: 1.5px;
+            margin: 0;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        &__posts {
+            @include reset-list;
+        }
+
+        &__list {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 15px 0;
+
+            &:not(:last-child) {
+                border-bottom: 1px dashed $light-grey;
+            }
+        }
+
+        &__img {
+            width: 40%;
+        }
+
+        &__details {
+            padding-left: 10px;
+            width: 50%;
+        }
+
+        &__post-title {
+            @extend %no-decoration;
+            color: $purple;
+            font-size: 14px;
+
+            &:hover {
+                @extend %u-decoration;
+            }
+        }
+
+        &__post-date {
+            font-size: 12px;
+            margin: 5px 0 0 0;
+        }
+    }
+}
